@@ -144,8 +144,18 @@ class StableAudioFG:
 
                 # 加载音频为张量
                 waveform, sample_rate = torchaudio.load(audio_path)
+                
                 # 返回音频张量、采样率和文件路径
-                return ((waveform, sample_rate), audio_path,)
+                #return ((waveform, sample_rate), audio_path,)
+                
+                # 将(waveform, sample_rate)转换为目标字典格式
+                audio_data = {
+                    'waveform': waveform.unsqueeze(0),  # 增加批次维度
+                    'sample_rate': sample_rate
+                }
+                
+                # 返回新格式的数据
+                return (audio_data, audio_path,)
         except Exception as e:
             print(f"Audio generation failed: {str(e)}")
         # finally:
