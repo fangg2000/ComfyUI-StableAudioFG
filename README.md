@@ -1,4 +1,5 @@
-stable-audio的comfyui插件（支持离线使用）
+一、安装步骤相关请参考：https://github.com/Stability-AI/stable-audio-tools
+二、stable-audio的comfyui插件（支持离线使用）
 ```
   1、下载主模型中的model.safetensors，放到ComfyUI/models/checkpoints/stable-audio
 
