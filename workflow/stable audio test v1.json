@@ -1,0 +1,288 @@
+{
+  "id": "b5148afe-bcf8-45a4-96a7-a0f65cd53f48",
+  "revision": 0,
+  "last_node_id": 23,
+  "last_link_id": 24,
+  "nodes": [
+    {
+      "id": 17,
+      "type": "Note",
+      "pos": [
+        192.8160858154297,
+        -325.2218933105469
+      ],
+      "size": [
+        766.6362915039062,
+        179.58798217773438
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "1、下载主模型中的model.safetensors和model_config.json两个文件，放到ComfyUI/models/checkpoints/stable-audio\n\nhttps://huggingface.co/stabilityai/stable-audio-open-1.0/tree/main\n\n2、(可选，方便本地加载)下载t5-base模型中的model.safetensors、config.json、tokenizer.json，放到ComfyUI/models/t5-base\n\nhttps://huggingface.co/google-t5/t5-base/tree/main"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 15,
+      "type": "VHS_LoadAudio",
+      "pos": [
+        256.6223449707031,
+        220.4411163330078
+      ],
+      "size": [
+        232.32305908203125,
+        82
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio_file",
+          "type": "STRING",
+          "widget": {
+            "name": "audio_file"
+          },
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "3a96e87951f498ebcbb6d5bf685f6b0014c8f591",
+        "Node name for S&R": "VHS_LoadAudio"
+      },
+      "widgets_values": {
+        "audio_file": "",
+        "seek_seconds": 1
+      }
+    },
+    {
+      "id": 14,
+      "type": "AudioPlay",
+      "pos": [
+        567.0825805664062,
+        -69.95994567871094
+      ],
+      "size": [
+        698.8970947265625,
+        364.2198181152344
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 15
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfyui-mixlab-nodes",
+        "ver": "b2bb1876def6330fccf1e03cc69d2166cae7bedb",
+        "Node name for S&R": "AudioPlay"
+      },
+      "widgets_values": [
+        [
+          "/api/view?filename=._00001_.wav&type=temp&subfolder=&rand=0.7777669346240961",
+          null
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "type": "ttN text",
+      "pos": [
+        -299.8908386230469,
+        69.27052307128906
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            17
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_tinyterranodes",
+        "ver": "4de87565b47f0a43700ae96612866ba24d2471e9",
+        "Node name for S&R": "ttN text",
+        "ttNnodeVersion": "1.0.0"
+      },
+      "widgets_values": [
+        "a bird is singing",
+        [
+          false,
+          true
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "type": "StableAudioFG",
+      "pos": [
+        200.48289489746094,
+        -71.4814453125
+      ],
+      "size": [
+        290.53399658203125,
+        238.28555297851562
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio_model",
+          "type": "SAOMODEL",
+          "link": 20
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "name": "audio_path",
+          "type": "STRING",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-StableAudioSampler",
+        "ver": "1fa0c1155b1c7f42a3c73e48bddc0b55fef1dba0",
+        "Node name for S&R": "StableAudioFG"
+      },
+      "widgets_values": [
+        "",
+        "noise",
+        1240,
+        "randomize",
+        15,
+        7,
+        5
+      ]
+    },
+    {
+      "id": 19,
+      "type": "LoadStableAudioModel",
+      "pos": [
+        -169.60073852539062,
+        -70.8885726928711
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "audio_model",
+          "type": "SAOMODEL",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-StableAudioSampler",
+        "ver": "1fa0c1155b1c7f42a3c73e48bddc0b55fef1dba0",
+        "Node name for S&R": "LoadStableAudioModel"
+      },
+      "widgets_values": [
+        "model.safetensors"
+      ]
+    }
+  ],
+  "links": [
+    [
+      15,
+      15,
+      0,
+      14,
+      0,
+      "AUDIO"
+    ],
+    [
+      17,
+      11,
+      0,
+      16,
+      1,
+      "STRING"
+    ],
+    [
+      18,
+      16,
+      1,
+      15,
+      0,
+      "STRING"
+    ],
+    [
+      20,
+      19,
+      0,
+      16,
+      0,
+      "SAOMODEL"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.0610764609500007,
+      "offset": [
+        534.9401881435733,
+        402.53587266687515
+      ]
+    },
+    "frontendVersion": "1.20.7",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
